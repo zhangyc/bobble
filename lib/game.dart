@@ -51,6 +51,7 @@ class _GameState extends State<Game> {
         _bubbleController,
         ParallaxBaseBackground(speed: speed),
       ],
+
       globalForces: [
         AccelerationForce2D(
           id: 1,

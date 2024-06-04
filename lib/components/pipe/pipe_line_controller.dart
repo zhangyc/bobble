@@ -4,6 +4,8 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flappy_bird/components/pipe/pipe_line.dart';
 import 'package:flutter/material.dart';
 
+import '../bubble/bubble_decoration.dart';
+
 class PipeLineController extends GameComponent with ChangeNotifier {
   final double speed;
   int currentInterval = 2000;
@@ -14,7 +16,7 @@ class PipeLineController extends GameComponent with ChangeNotifier {
   void update(double dt) {
     if (checkInterval('AddsPipe', currentInterval, dt)) {
       double offset = Random().nextInt(100).toDouble() + -50;
-      double offsetx = Random().nextInt(50).toDouble() + -25;
+      double offsetx = Random().nextInt(150).toDouble() ;
       gameRef.add(
         PipeLine(
           speed: speed,

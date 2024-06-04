@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flappy_bird/components/bird.dart';
+import 'package:flappy_bird/components/bubble/bubble_controller.dart';
 import 'package:flappy_bird/components/pipe/pipe_line_controller.dart';
 import 'package:flappy_bird/components/scenario/background.dart';
 import 'package:flappy_bird/components/scenario/base.dart';
@@ -15,12 +16,17 @@ class Game extends StatefulWidget {
 
 class _GameState extends State<Game> {
   late PipeLineController _pipeLineController;
+  late BubbleController _bubbleController;
+
+
   double speed = 80;
   static const maxHeight = 620.0;
 
   @override
   void initState() {
     _pipeLineController = PipeLineController(speed: speed);
+    _bubbleController = BubbleController(speed: speed);
+
     super.initState();
   }
 
@@ -37,11 +43,12 @@ class _GameState extends State<Game> {
     return BonfireWidget(
       map: WorldMap.empty(size: sizeGame),
       player: Bird(
-        position: (sizeGame / 2.1),
+        position: Vector2((sizeGame / 2.1).x,sizeGame.y - 120),
       ),
       background: ParallaxBackground(speed: speed),
       components: [
         _pipeLineController,
+        _bubbleController,
         ParallaxBaseBackground(speed: speed),
       ],
       globalForces: [
@@ -59,6 +66,7 @@ class _GameState extends State<Game> {
         ScoreWidget.name: (context, game) {
           return ScoreWidget(
             controller: _pipeLineController,
+            bubbleController: _bubbleController,
           );
         }
       },

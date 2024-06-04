@@ -3,7 +3,7 @@ import 'package:flappy_bird/components/pipe/pipe.dart';
 import 'package:flappy_bird/components/scenario/base.dart';
 
 class PipeLine extends GameDecoration with Movement {
-  static const pipeSpaces = 70.0;
+  static const pipeSpaces = 70.0*5;
   final Vector2 offset;
   final Function onWin;
   bool alreadyWin = false;
@@ -35,7 +35,7 @@ class PipeLine extends GameDecoration with Movement {
 
   @override
   Future<void> onLoad() {
-    add(Pipe(position: Vector2.zero(), inverted: true));
+    // add(Pipe(position: Vector2.zero(), inverted: true));
     add(Pipe(position: Vector2(0, pipeSpaces + Pipe.pipeHeight)));
     final mapSize = gameRef.map.size;
     position = Vector2(
